@@ -1,0 +1,5 @@
+#!/bin/sh
+
+set -ex;
+
+kubectl port-forward $(kubectl get pods -l app=server -o=name) 3001:3000

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+set -ex;
+
+docker build -t localhost:5000/tmb-server:latest ./server
+docker push localhost:5000/tmb-server:latest
