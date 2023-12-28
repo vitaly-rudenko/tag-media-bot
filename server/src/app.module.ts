@@ -11,6 +11,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
         uri: configService.get('MONGODB_URI'),
+        dbName: configService.get('MONGODB_DATABASE'),
+        auth: {
+          username: configService.get('MONGODB_USER'),
+          password: configService.get('MONGODB_PASSWORD'),
+        },
       }),
     }),
     CatsModule,
