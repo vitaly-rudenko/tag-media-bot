@@ -6,7 +6,10 @@ services:
     build:
       context: server
     environment:
-      MONGODB_URI: mongodb://mongodb:27017/database
+      MONGODB_URI: "mongodb://mongodb:27017"
+      MONGODB_DATABASE: "database"
+      MONGODB_USER: "user"
+      MONGODB_PASSWORD: "p4ssw0rd"
     depends_on:
       - mongodb
     ports:
@@ -14,7 +17,7 @@ services:
 
   mongodb:
     container_name: mongodb
-    image: mongodb/mongodb-community-server:7.0-ubi8
+    image: mongo:7.0
     environment:
       MONGO_INITDB_ROOT_USERNAME: "user"
       MONGO_INITDB_ROOT_PASSWORD: "p4ssw0rd"
