@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: server
-          image: localhost:5000/tmb-server:latest
+          image: tag-media-bot/server:latest
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
           env:
