@@ -1,7 +1,7 @@
 {
-  "name": "server",
+  "name": "tags",
   "version": "1.0.0",
-  "description": "Server",
+  "description": "Tags",
   "author": "Vitaly Rudenko",
   "private": true,
   "license": "MIT",

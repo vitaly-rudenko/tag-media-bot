@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: server-deployment
+  name: tags-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: server
+      app: tags
   template:
     metadata:
       labels:
-        app: server
+        app: tags
     spec:
       containers:
-        - name: server
-          image: tag-media-bot/server:latest
+        - name: tags
+          image: tag-media-bot/tags:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
@@ -32,11 +32,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: server-service
+  name: tags-service
 spec:
   type: NodePort
   selector:
-    app: server
+    app: tags
   ports:
     - protocol: TCP
       port: 3001

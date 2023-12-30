@@ -2,5 +2,5 @@
 
 set -ex;
 
-docker build -t tag-media-bot/server:latest ./server
-minikube image load tag-media-bot/server:latest
+docker build -t tag-media-bot/tags:latest ./tags
+minikube image load tag-media-bot/tags:latest

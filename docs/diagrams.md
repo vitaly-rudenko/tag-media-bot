@@ -12,7 +12,7 @@ subgraph Kubernetes cluster
   
   subgraph Service level
     bot["Telegram Bot\n(telegraf)"]
-    server["Tags Server\n(Nest.js)"]
+    tags["Tags\n(Nest.js)"]
   end
   
   subgraph Storage level
@@ -26,8 +26,8 @@ db-->db_users & db_tags
 
 telegram-->|webhooks|lb
 lb-->bot
-bot-->|gRPC|server
-server-->db
+bot-->|gRPC|tags
+tags-->db
 ```
 
 ## Complete
