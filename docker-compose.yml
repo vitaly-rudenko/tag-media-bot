@@ -13,7 +13,20 @@ services:
     depends_on:
       - mongodb
     ports:
-      - "3000:3000"
+      - "3001:3000"
+
+  bot:
+    container_name: bot
+    platform: linux/amd64
+    build:
+      context: bot
+    environment:
+      USE_NATIVE_ENV: true
+      TELEGRAM_BOT_TOKEN: "$TELEGRAM_BOT_TOKEN"
+    depends_on:
+      - tags
+    ports:
+      - "3002:3000"
 
   mongodb:
     container_name: mongodb

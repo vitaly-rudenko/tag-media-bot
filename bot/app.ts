@@ -1,7 +1,9 @@
 import { Telegraf } from 'npm:telegraf'
 import { load } from 'https://deno.land/std@0.210.0/dotenv/mod.ts'
 
-await load({ export: true })
+if (Deno.env.get('USE_NATIVE_ENV') !== 'true') {
+  await load({ export: true })
+}
 
 const bot = new Telegraf(Deno.env.get('TELEGRAM_BOT_TOKEN')!)
 
@@ -129,4 +131,9 @@ bot.on('inline_query', async (context, next) => {
 })
 
 // TODO: use webhooks
-await bot.launch()
+bot.launch().catch((error) => {
+  console.error(error)
+  Deno.exit(1)
+})
+
+console.log('Running')
