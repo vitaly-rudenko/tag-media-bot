@@ -1,0 +1,12 @@
+{
+  "tasks": {
+    "dev": "deno run --allow-read --allow-env --allow-net --watch app.ts"
+  },
+  "imports": {
+    "telegraf": "npm:telegraf@^4.15"
+  },
+  "fmt": {
+    "semiColons": false,
+    "singleQuote": true
+  }
+}
