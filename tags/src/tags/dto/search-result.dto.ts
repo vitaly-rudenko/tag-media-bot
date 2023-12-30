@@ -1,4 +1,4 @@
-import { MediaType } from '../types'
+import { MediaType } from '../media-types'
 
 export class SearchResultDto {
   readonly type: MediaType

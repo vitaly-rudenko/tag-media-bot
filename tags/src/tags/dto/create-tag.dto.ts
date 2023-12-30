@@ -1,15 +1,28 @@
-import { IsIn, IsNotEmpty, IsString, MaxLength } from 'class-validator'
-import { MediaType, mediaTypes } from '../types'
+import {
+  ArrayMaxSize,
+  ArrayNotEmpty,
+  IsArray,
+  IsIn,
+  IsNotEmpty,
+  IsString,
+  MaxLength,
+  MinLength,
+} from 'class-validator'
+import { MediaType, mediaTypes } from '../media-types'
 
 export class CreateTagDto {
   @IsNotEmpty()
   @IsString()
   readonly authorUserId: number
 
-  @IsNotEmpty()
-  @IsString()
-  @MaxLength(100)
-  readonly tagValue: string
+  @IsArray()
+  @ArrayNotEmpty()
+  @ArrayMaxSize(10)
+  @IsString({ each: true })
+  @IsNotEmpty({ each: true })
+  @MinLength(3, { each: true })
+  @MaxLength(20, { each: true })
+  readonly values: string[]
 
   @IsIn(mediaTypes)
   readonly type: MediaType

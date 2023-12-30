@@ -9,7 +9,7 @@ await connect(process.env.MONGODB_URI || '', {
 
 const tagSchema = new Schema({
   authorUserId: Number,
-  tags: [String],
+  values: [String],
   type: String,
   fileName: String,
   fileUniqueId: String,
@@ -30,7 +30,7 @@ for (let i = 0; i < 10; i++) {
   await TagModel.insertMany(
     Array.from(new Array(10_000), (_, i) => ({
       authorUserId: faker.number.int({ min: 1, max: 100 }),
-      tags: Array.from(new Array(faker.number.int({ min: 5, max: 10 })), () =>
+      values: Array.from(new Array(faker.number.int({ min: 5, max: 10 })), () =>
         faker.word.words({ count: { min: 1, max: 10 } }),
       ),
       type: faker.helpers.arrayElement([

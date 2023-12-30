@@ -11,7 +11,7 @@ export type MediaType = (typeof mediaTypes)[number]
 
 export type CreateTagDto = {
   authorUserId: number
-  tagValue: string
+  values: string[]
   type: MediaType
   fileName?: string
   fileUniqueId: string
@@ -32,7 +32,7 @@ export type SearchResultDto = {
 
 export type Tag = {
   authorUserId: number
-  tags: string[]
+  values: string[]
   type: MediaType
   fileName?: string
   fileUniqueId: string
@@ -50,7 +50,7 @@ export class Tags {
       fileName: input.fileName,
       fileId: input.fileId,
       fileUniqueId: input.fileUniqueId,
-      tags: input.tagValue.split(', '),
+      values: input.values,
       createdAt: new Date(),
     }
 
@@ -61,7 +61,7 @@ export class Tags {
 
   async search(input: SearchTagsDto): Promise<SearchResultDto[]> {
     return this.tags
-      .filter(tag => tag.tags.some(t => t.startsWith(input.query)))
+      .filter(tag => tag.values.some(value => value.startsWith(input.query)))
       .map(tag => ({ type: tag.type, fileName: tag.fileName, fileId: tag.fileId }))
   }
 }

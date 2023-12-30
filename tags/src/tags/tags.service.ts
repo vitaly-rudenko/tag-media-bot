@@ -1,13 +1,11 @@
 import { Model } from 'mongoose'
 import { Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
+import { escapeRegex } from 'src/utils/escape-regex'
 import { CreateTagDto } from './dto/create-tag.dto'
-import { Tag } from './tag.schema'
 import { SearchTagsDto } from './dto/search-tags.dto'
-import { parseTagValue } from './utils/parseTagValue'
-import { escapeRegex } from 'src/utils/escapeRegexp'
-import { normalizeTagValue } from './utils/normalizeTagValue'
 import { SearchResultDto } from './dto/search-result.dto'
+import { Tag } from './tag.schema'
 
 @Injectable()
 export class TagsService {
@@ -17,26 +15,24 @@ export class TagsService {
     authorUserId,
     fileUniqueId,
     fileId,
-    tagValue,
+    values,
   }: CreateTagDto): Promise<Tag> {
     return await this.tagModel.create({
       authorUserId,
       fileUniqueId,
       fileId,
-      tags: parseTagValue(tagValue),
+      values,
       createdAt: new Date(),
     })
   }
 
   async search(input: SearchTagsDto): Promise<SearchResultDto[]> {
-    const query = normalizeTagValue(input.query)
-
     const fileUniqueIds = new Set<string>()
     const searchResults = []
 
     const cursor = this.tagModel
       .find({
-        tags: { $regex: `^${escapeRegex(query)}` },
+        values: { $regex: `^${escapeRegex(input.query)}` },
         ...(input.authorUserId && { authorUserId: input.authorUserId }),
       })
       .cursor({ batchSize: 100 })
