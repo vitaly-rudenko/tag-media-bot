@@ -1,7 +1,7 @@
-import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
-import { CatsModule } from './cats/cats.module';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { Module } from '@nestjs/common'
+import { MongooseModule } from '@nestjs/mongoose'
+import { ConfigModule, ConfigService } from '@nestjs/config'
+import { TagsModule } from './tags/tags.module'
 
 @Module({
   imports: [
@@ -18,7 +18,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         },
       }),
     }),
-    CatsModule,
+    TagsModule,
   ],
 })
 export class AppModule {}
