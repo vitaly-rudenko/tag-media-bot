@@ -8,8 +8,10 @@ await connect(process.env.MONGODB_URI || '', {
 })
 
 const tagSchema = new Schema({
-  authorUserId: String,
+  authorUserId: Number,
   tags: [String],
+  type: String,
+  fileName: String,
   fileUniqueId: String,
   fileId: String,
   createdAt: Date,
@@ -24,15 +26,25 @@ await TagModel.collection.createIndex({ tags: 1 })
 
 for (let i = 0; i < 10; i++) {
   console.log('Progress:', i + 1, '/', 10)
+
   await TagModel.insertMany(
-    Array.from(new Array(10_000), () => ({
-      authorUserId: `user-${faker.number.int({ min: 1, max: 100 })}`,
-      createdAt: faker.date.recent(),
-      fileId: faker.string.uuid(),
-      fileUniqueId: faker.string.uuid(),
+    Array.from(new Array(10_000), (_, i) => ({
+      authorUserId: faker.number.int({ min: 1, max: 100 }),
       tags: Array.from(new Array(faker.number.int({ min: 5, max: 10 })), () =>
         faker.word.words({ count: { min: 1, max: 10 } }),
       ),
+      type: faker.helpers.arrayElement([
+        'audio',
+        'video',
+        'photo',
+        'document',
+        'gif',
+        'mpeg4_gif',
+      ]),
+      ...(i % 2 === 0 && { fileName: faker.system.fileName() }),
+      fileUniqueId: faker.string.uuid(),
+      fileId: faker.string.uuid(),
+      createdAt: faker.date.recent(),
     })),
   )
 }

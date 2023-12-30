@@ -7,6 +7,7 @@ import { SearchTagsDto } from './dto/search-tags.dto'
 import { parseTagValue } from './utils/parseTagValue'
 import { escapeRegex } from 'src/utils/escapeRegexp'
 import { normalizeTagValue } from './utils/normalizeTagValue'
+import { SearchResultDto } from './dto/search-result.dto'
 
 @Injectable()
 export class TagsService {
@@ -27,11 +28,11 @@ export class TagsService {
     })
   }
 
-  async search(input: SearchTagsDto): Promise<string[]> {
+  async search(input: SearchTagsDto): Promise<SearchResultDto[]> {
     const query = normalizeTagValue(input.query)
 
     const fileUniqueIds = new Set<string>()
-    const fileIds = []
+    const searchResults = []
 
     const cursor = this.tagModel
       .find({
@@ -43,11 +44,15 @@ export class TagsService {
     for await (const tag of cursor) {
       if (fileUniqueIds.has(tag.fileUniqueId)) continue
       fileUniqueIds.add(tag.fileUniqueId)
-      fileIds.push(tag.fileId)
+      searchResults.push({
+        type: tag.type,
+        fileName: tag.fileName,
+        fileId: tag.fileId,
+      })
 
       if (fileUniqueIds.size === input.limit) break
     }
 
-    return fileIds
+    return searchResults
   }
 }
