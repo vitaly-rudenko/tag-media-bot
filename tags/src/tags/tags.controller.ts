@@ -9,16 +9,15 @@ import {
 import { TagsService } from './tags.service'
 import { CreateTagDto } from './dto/create-tag.dto'
 import { SearchTagsDto } from './dto/search-tags.dto'
-import { SearchResultDto } from './dto/search-result.dto'
-import { Tag } from './tag.schema'
+import { SearchResultItemDto } from './dto/search-result.dto'
 
 @Controller('tags')
 export class TagsController {
   constructor(private readonly tagsService: TagsService) {}
 
   @Post()
-  async create(@Body() input: CreateTagDto): Promise<Tag> {
-    return this.tagsService.create(input)
+  async create(@Body() input: CreateTagDto): Promise<void> {
+    await this.tagsService.create(input)
   }
 
   @Get()
@@ -35,7 +34,7 @@ export class TagsController {
       }),
     )
     input: SearchTagsDto,
-  ): Promise<SearchResultDto[]> {
+  ): Promise<SearchResultItemDto[]> {
     return this.tagsService.search(input)
   }
 }

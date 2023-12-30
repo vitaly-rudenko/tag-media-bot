@@ -5,8 +5,8 @@ import { grpcClientOptions } from './grpc-client.options'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
-  app.connectMicroservice(grpcClientOptions)
 
+  app.connectMicroservice(grpcClientOptions)
   app.useGlobalPipes(new ValidationPipe())
 
   await app.startAllMicroservices()

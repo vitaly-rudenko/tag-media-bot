@@ -4,6 +4,7 @@ import {
   IsArray,
   IsIn,
   IsNotEmpty,
+  IsOptional,
   IsString,
   MaxLength,
   MinLength,
@@ -34,4 +35,9 @@ export class CreateTagDto {
   @IsNotEmpty()
   @IsString()
   readonly fileId: string
+
+  @IsNotEmpty()
+  @IsString()
+  @IsOptional()
+  readonly fileName?: string
 }
