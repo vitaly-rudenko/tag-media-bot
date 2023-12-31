@@ -12,7 +12,7 @@ import { SearchTagsDto } from './dto/search-tags.dto'
 import { SearchResultItemDto } from './dto/search-result.dto'
 
 @Controller('tags')
-export class TagsController {
+export class TagsHttpController {
   constructor(private readonly tagsService: TagsService) {}
 
   @Post()
@@ -21,20 +21,7 @@ export class TagsController {
   }
 
   @Get()
-  async search(
-    @Query(
-      new ValidationPipe({
-        transform: true,
-        transformOptions: {
-          exposeUnsetFields: false,
-        },
-        // forbid unknown properties
-        whitelist: true,
-        forbidNonWhitelisted: true,
-      }),
-    )
-    input: SearchTagsDto,
-  ): Promise<SearchResultItemDto[]> {
+  async search(@Query() input: SearchTagsDto): Promise<SearchResultItemDto[]> {
     return this.tagsService.search(input)
   }
 }

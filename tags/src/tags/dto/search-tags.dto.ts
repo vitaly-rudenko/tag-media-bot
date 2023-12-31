@@ -23,8 +23,9 @@ export class SearchTagsDto {
   @Max(50)
   readonly limit: number
 
-  @Type(() => Number)
   @Expose({ name: 'author_user_id' })
+  @Type(() => Number)
+  @IsInt()
   @IsOptional()
   readonly authorUserId?: number
 }

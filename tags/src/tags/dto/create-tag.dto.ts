@@ -3,6 +3,7 @@ import {
   ArrayNotEmpty,
   IsArray,
   IsIn,
+  IsInt,
   IsNotEmpty,
   IsOptional,
   IsString,
@@ -12,8 +13,7 @@ import {
 import { MediaType, mediaTypes } from '../media-types'
 
 export class CreateTagDto {
-  @IsNotEmpty()
-  @IsString()
+  @IsInt()
   readonly authorUserId: number
 
   @IsArray()
