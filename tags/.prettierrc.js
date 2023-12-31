@@ -1,1 +1,1 @@
-module.exports = require('../.prettierrc.js')
+module.exports = require('@tag-media-bot/config/prettier')

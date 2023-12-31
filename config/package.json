@@ -1,0 +1,13 @@
+{
+  "name": "@tag-media-bot/config",
+  "version": "1.0.0",
+  "author": "Vitaly Rudenko",
+  "license": "MIT",
+  "private": true,
+  "description": "Configuration files",
+  "files": [
+    "eslint.js",
+    "prettier.js",
+    "tsconfig.json"
+  ]
+}

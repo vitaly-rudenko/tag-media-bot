@@ -4,7 +4,8 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "nx run-many --verbose --target=build"
+    "build": "nx run-many --verbose --target=build",
+    "lint": "nx run-many --verbose --target=lint"
   },
   "devDependencies": {
     "@nx/js": "17.2.8",
@@ -27,8 +28,8 @@
     "typescript": "^5.3.3"
   },
   "workspaces": [
-    "tags",
-    "bot",
-    "grpc"
+    "config",
+    "grpc",
+    "tags"
   ]
 }

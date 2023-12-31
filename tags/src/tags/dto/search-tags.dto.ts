@@ -1,13 +1,5 @@
 import { Expose, Type } from 'class-transformer'
-import {
-  IsInt,
-  IsNotEmpty,
-  IsString,
-  Max,
-  MaxLength,
-  Min,
-  MinLength,
-} from 'class-validator'
+import { IsInt, IsNotEmpty, IsString, Max, MaxLength, Min, MinLength } from 'class-validator'
 import { IsUndefinable } from '../../utils/decorators'
 
 export class SearchTagsDto {
