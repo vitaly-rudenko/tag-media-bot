@@ -1,11 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Post,
-  Query,
-  ValidationPipe,
-} from '@nestjs/common'
+import { Body, Controller, Get, Post, Query } from '@nestjs/common'
 import { TagsService } from './tags.service'
 import { CreateTagDto } from './dto/create-tag.dto'
 import { SearchTagsDto } from './dto/search-tags.dto'
