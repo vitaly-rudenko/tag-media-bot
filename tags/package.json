@@ -16,7 +16,8 @@
     "test": "jest",
     "test:watch": "npm run test -- --watch",
     "test:coverage": "npm run test -- --coverage",
-    "db:seed": "node --env-file=.env ./scripts/seed-db.mjs"
+    "db:reset": "node --env-file=.env ./scripts/db-reset.mjs",
+    "db:seed": "node --env-file=.env ./scripts/db-seed.mjs"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.9.13",

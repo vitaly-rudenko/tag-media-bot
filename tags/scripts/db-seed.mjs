@@ -20,8 +20,6 @@ const tagSchema = new Schema({
 const TagModel = model('Tag', tagSchema, 'tags')
 
 await TagModel.collection.drop()
-await TagModel.deleteMany()
-
 await TagModel.collection.createIndex({ tags: 1 })
 
 for (let i = 0; i < 10; i++) {
