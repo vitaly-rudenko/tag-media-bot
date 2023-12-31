@@ -1,23 +1,18 @@
 import { Model } from 'mongoose'
 import { Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
-import { escapeRegex } from 'src/utils/escape-regex'
 import { CreateTagDto } from './dto/create-tag.dto'
 import { SearchTagsDto } from './dto/search-tags.dto'
 import { SearchResultItemDto } from './dto/search-result.dto'
 import { Tag } from './tag.schema'
 import { normalizeTagValue } from './normalize-tag-value'
+import { escapeRegex } from '../utils/escape-regex'
 
 @Injectable()
 export class TagsService {
   constructor(@InjectModel(Tag.name) private readonly tagModel: Model<Tag>) {}
 
-  async create({
-    authorUserId,
-    fileUniqueId,
-    fileId,
-    values,
-  }: CreateTagDto): Promise<Tag> {
+  async create({ authorUserId, fileUniqueId, fileId, values }: CreateTagDto): Promise<Tag> {
     return await this.tagModel.create({
       authorUserId,
       fileUniqueId,
