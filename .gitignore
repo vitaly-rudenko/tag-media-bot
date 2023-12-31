@@ -1,5 +1,43 @@
+# compiled output
+dist
+tmp
+/out-tsc
+
+# dependencies
+node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+**/Thumbs.db
+**/.DS_Store
+
+# other
+.env
+.npmrc
+.nyc_output
+coverage
+
 mongodb-data/
 docker-compose.override.yml
-**/.DS_Store
 **/.vscode
 **/.env
+
+.nx/
