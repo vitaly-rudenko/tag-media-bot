@@ -1,30 +1,30 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import { HydratedDocument } from 'mongoose'
-import { MediaType } from './media-types'
+import { MediaType, mediaTypes } from './media-types'
 
 export type TagDocument = HydratedDocument<Tag>
 
 @Schema()
 export class Tag {
-  @Prop()
+  @Prop({ type: Number, required: true })
   authorUserId: number
 
-  @Prop()
+  @Prop({ type: [String], required: true })
   values: string[]
 
-  @Prop()
+  @Prop({ type: String, enum: mediaTypes, required: true })
   type: MediaType
 
-  @Prop()
+  @Prop({ type: String })
   fileName?: string
 
-  @Prop()
+  @Prop({ type: String, required: true })
   fileUniqueId: string
 
-  @Prop()
+  @Prop({ type: String, required: true })
   fileId: string
 
-  @Prop()
+  @Prop({ type: Date, required: true })
   createdAt: Date
 }
 
