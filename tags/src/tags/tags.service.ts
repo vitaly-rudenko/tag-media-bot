@@ -12,9 +12,13 @@ import { escapeRegex } from '../utils/escape-regex'
 export class TagsService {
   constructor(@InjectModel(Tag.name) private readonly tagModel: Model<Tag>) {}
 
-  async create({ authorUserId, fileUniqueId, fileId, values }: CreateTagDto): Promise<Tag> {
+  async create(input: CreateTagDto): Promise<Tag> {
+    const { authorUserId, type, fileName, fileUniqueId, fileId, values } = input
+
     return await this.tagModel.create({
       authorUserId,
+      type,
+      fileName,
       fileUniqueId,
       fileId,
       values: values.map(normalizeTagValue),
