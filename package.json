@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "nx run @tag-media-bot/grpc:build"
+    "build": "nx run-many --verbose --target=build"
   },
   "devDependencies": {
     "@nx/js": "17.2.8",
