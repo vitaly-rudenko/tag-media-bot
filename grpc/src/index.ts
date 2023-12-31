@@ -1,6 +1,6 @@
 import path from 'path'
 
-export { Empty } from './generated/google/protobuf/empty.js'
+export { Empty } from './generated/google/protobuf/empty'
 
 export {
   protobufPackage as tagsPackage,
@@ -10,6 +10,6 @@ export {
   SearchResults,
   SearchTags,
   TagsService,
-} from './generated/proto/tags.js'
+} from './generated/proto/tags'
 
 export const protoPath = path.resolve(__dirname, '..', 'proto')
