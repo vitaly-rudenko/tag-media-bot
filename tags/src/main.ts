@@ -10,6 +10,8 @@ async function bootstrap() {
       transform: true,
       whitelist: true,
       forbidNonWhitelisted: true,
+      forbidUnknownValues: true,
+      stopAtFirstError: true,
     }),
   )
 
