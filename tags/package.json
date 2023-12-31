@@ -17,7 +17,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "script:seed-db": "node --env-file=.env ./scripts/seed-db.mjs"
+    "script:seed-db": "node --env-file=.env ./scripts/seed-db.mjs",
+    "grpc:generate": "protoc --ts_proto_out=./src/generated/grpc --plugin=protoc-gen-ts_proto=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_opt=nestJs=true --ts_proto_opt=unrecognizedEnum=false --ts_proto_opt=stringEnums=true ./src/tags/tags.proto"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.9.13",
@@ -55,6 +56,7 @@
     "ts-jest": "^29.1.0",
     "ts-loader": "^9.4.3",
     "ts-node": "^10.9.1",
+    "ts-proto": "^1.166.0",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.1.3"
   },
