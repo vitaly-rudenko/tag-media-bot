@@ -1,4 +1,4 @@
-import path from 'path'
+import * as path from 'path'
 
 export { Empty } from './generated/google/protobuf/empty'
 

@@ -3,19 +3,17 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "module": "commonjs",
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
     "target": "ES2022",
     "noImplicitAny": true,
-    "moduleResolution": "node",
     "strictNullChecks": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "declaration": true,
-    "baseUrl": ".",
-    "paths": {
-      "*": ["node_modules/*"]
-    }
-  },
-  "exclude": ["node_modules"]
+    "removeComments": true,
+    "allowSyntheticDefaultImports": true,
+    "incremental": true,
+    "strictBindCallApply": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true
+  }
 }
