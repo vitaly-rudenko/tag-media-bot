@@ -41,11 +41,11 @@ async function toDto<T extends object, V>(cls: ClassConstructor<T>, input: V): P
   return dto
 }
 
-@Controller('tags')
+@Controller()
 export class TagsGrpcController implements GrpcTagsService {
   constructor(private readonly tagsService: TagsService) {}
 
-  @GrpcMethod('tags', 'Create')
+  @GrpcMethod('TagsService', 'Create')
   async Create(input: CreateTag): Promise<Empty> {
     const dto = await toDto(CreateTagDto, {
       type: mediaTypeMap[input.type],
@@ -61,7 +61,7 @@ export class TagsGrpcController implements GrpcTagsService {
     return {}
   }
 
-  @GrpcMethod('tags', 'Search')
+  @GrpcMethod('TagsService', 'Search')
   async Search(input: SearchTags): Promise<SearchResults> {
     const dto = await toDto(SearchTagsDto, input)
     const searchResults = await this.tagsService.search(dto)
