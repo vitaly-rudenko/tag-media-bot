@@ -5,12 +5,12 @@ import {
   IsIn,
   IsInt,
   IsNotEmpty,
-  IsOptional,
   IsString,
   MaxLength,
   MinLength,
 } from 'class-validator'
 import { MediaType, mediaTypes } from '../media-types'
+import { IsUndefinable } from '../../utils/decorators'
 
 export class CreateTagDto {
   @IsInt()
@@ -36,8 +36,8 @@ export class CreateTagDto {
   @IsString()
   readonly fileId: string
 
+  @IsUndefinable()
   @IsNotEmpty()
   @IsString()
-  @IsOptional()
   readonly fileName?: string
 }

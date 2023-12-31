@@ -2,13 +2,13 @@ import { Expose, Type } from 'class-transformer'
 import {
   IsInt,
   IsNotEmpty,
-  IsOptional,
   IsString,
   Max,
   MaxLength,
   Min,
   MinLength,
 } from 'class-validator'
+import { IsUndefinable } from '../../utils/decorators'
 
 export class SearchTagsDto {
   @IsNotEmpty()
@@ -26,6 +26,6 @@ export class SearchTagsDto {
   @Expose({ name: 'author_user_id' })
   @Type(() => Number)
   @IsInt()
-  @IsOptional()
+  @IsUndefinable()
   readonly authorUserId?: number
 }
