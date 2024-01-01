@@ -1,4 +1,4 @@
-import { MediaType } from './tags'
+import { MediaType } from '@tag-media-bot/grpc'
 
 export type UserSession = {
   type: MediaType

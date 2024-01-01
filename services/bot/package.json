@@ -9,8 +9,7 @@
   "scripts": {
     "build": "rimraf dist && tsc",
     "dev": "ts-node-dev --env-file=.env --respawn --transpile-only src/app.ts",
-    "lint": "eslint \"src/**/*.ts\"",
-    "lint:fix": "npm run lint -- --fix"
+    "lint": "eslint \"src/**/*.ts\" --fix"
   },
   "dependencies": {
     "@tag-media-bot/grpc": "*",
