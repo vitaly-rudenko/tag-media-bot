@@ -4,7 +4,8 @@ services:
   tags:
     container_name: tags
     build:
-      context: tags
+      context: .
+      dockerfile: ./services/tags/Dockerfile
     environment:
       MONGODB_URI: "mongodb://mongodb:27017"
       MONGODB_DATABASE: "database"
@@ -14,19 +15,20 @@ services:
       - mongodb
     ports:
       - "3001:3000"
+      - "5001:5000"
 
-  bot:
-    container_name: bot
-    platform: linux/amd64
-    build:
-      context: bot
-    environment:
-      USE_NATIVE_ENV: true
-      TELEGRAM_BOT_TOKEN: "$TELEGRAM_BOT_TOKEN"
-    depends_on:
-      - tags
-    ports:
-      - "3002:3000"
+  # bot:
+  #   container_name: bot
+  #   platform: linux/amd64
+  #   build:
+  #     context: .
+  #     dockerfile: ./services/bot/Dockerfile
+  #   environment:
+  #     TELEGRAM_BOT_TOKEN: "$TELEGRAM_BOT_TOKEN"
+  #   depends_on:
+  #     - tags
+  #   ports:
+  #     - "3002:3000"
 
   mongodb:
     container_name: mongodb
