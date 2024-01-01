@@ -19,5 +19,6 @@ module.exports = {
   rules: {
     'prettier/prettier': ['error', { 'semi': false }],
     'semi': ['error', 'never'],
+    '@typescript-eslint/no-explicit-any': ['warn']
   },
 }
