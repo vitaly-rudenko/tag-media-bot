@@ -5,7 +5,7 @@ import { protoPath, tagsPackage } from '@tag-media-bot/grpc'
 export const grpcClientOptions: ClientOptions = {
   transport: Transport.GRPC,
   options: {
-    url: process.env.GRPC_URL ?? 'localhost:3002',
+    url: process.env.GRPC_URL ?? '0.0.0.0:5000',
     package: tagsPackage,
     protoPath: join(protoPath, 'tags.proto'),
     loader: {

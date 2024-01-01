@@ -4,4 +4,6 @@
 **/.gitignore
 **/Dockerfile
 **/.dockerignore
-**/.env
+**/.env*
+**/.turbo
+**/.DS_Store

@@ -1,0 +1,15 @@
+{
+  "name": "@tag-media-bot/bot",
+  "version": "1.0.0",
+  "description": "Telegram bot",
+  "author": "Vitaly Rudenko",
+  "license": "MIT",
+  "main": "dist/app.js",
+  "scripts": {
+    "lint": "eslint \"src/**/*.ts\" --fix"
+  },
+  "dependencies": {
+    "@tag-media-bot/grpc": "*",
+    "telegraf": "^4.15.3"
+  }
+}

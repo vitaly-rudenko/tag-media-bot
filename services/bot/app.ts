@@ -1,13 +1,9 @@
-import { Telegraf } from 'npm:telegraf'
-import { load } from 'https://deno.land/std@0.210.0/dotenv/mod.ts'
+import { Telegraf } from 'telegraf'
 import { Tags } from './tags.ts';
 import { UserSession, UserSessions } from './user-sessions.ts';
+import { CreateTag, tagsPackage } from '@tag-media-bot/grpc'
 
-if (Deno.env.get('USE_NATIVE_ENV') !== 'true') {
-  await load({ export: true })
-}
-
-const bot = new Telegraf(Deno.env.get('TELEGRAM_BOT_TOKEN')!)
+const bot = new Telegraf(process.env.get('TELEGRAM_BOT_TOKEN')!)
 
 bot.command('start', async (context) => {
   await context.reply('Send a photo, a GIF or a video to tag.')

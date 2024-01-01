@@ -26,8 +26,8 @@ testem.log
 /typings
 
 # System Files
-**/Thumbs.db
-**/.DS_Store
+Thumbs.db
+.DS_Store
 
 # other
 .env
@@ -37,7 +37,8 @@ coverage
 
 mongodb-data/
 docker-compose.override.yml
-**/.vscode
-**/.env
+.vscode
+.env
 
-.nx/
+.turbo/
+out/
