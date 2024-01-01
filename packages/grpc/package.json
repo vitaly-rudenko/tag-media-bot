@@ -13,12 +13,16 @@
   ],
   "scripts": {
     "build": "rimraf dist && tsc",
-    "lint": "eslint \"src/**/*.ts\"",
-    "lint:fix": "npm run lint -- --fix",
-    "grpc:generate": "rimraf src/generated && mkdirp src/generated && protoc --ts_proto_out=./src/generated --plugin=protoc-gen-ts_proto=../../node_modules/.bin/protoc-gen-ts_proto --ts_proto_opt=onlyTypes=true,unrecognizedEnum=false,stringEnums=true ./proto/tags.proto"
+    "lint": "eslint \"src/**/*.ts\" --fix",
+    "grpc:generate": "rimraf src/generated && mkdirp src/generated && protoc --ts_proto_out=./src/generated --plugin=protoc-gen-ts_proto=../../node_modules/.bin/protoc-gen-ts_proto --ts_proto_opt=unrecognizedEnum=false,lowerCaseServiceMethods=true,useReadonlyTypes=true,useSnakeTypeName=false,outputJsonMethods=false,outputEncodeMethods=true,outputPartialMethods=false,outputServices=grpc-js,outputServices=default ./proto/tags.proto"
   },
   "devDependencies": {
     "@tag-media-bot/config": "*",
     "ts-proto": "^1.166.1"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.9.13",
+    "long": "^5.2.3",
+    "protobufjs": "^7.2.5"
   }
 }

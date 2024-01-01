@@ -1,4 +1,6 @@
 import * as path from 'path'
+import type { CallOptions, ClientUnaryCall, Metadata, ServiceError } from '@grpc/grpc-js'
+import { Client } from '@grpc/grpc-js'
 
 export { Empty } from './generated/google/protobuf/empty'
 
@@ -10,6 +12,48 @@ export {
   SearchResults,
   SearchTags,
   TagsService,
+  TagsServiceClientImpl,
+  TagsServiceClient,
 } from './generated/proto/tags'
 
 export const protoPath = path.resolve(__dirname, '..', 'proto')
+
+type OriginalCall<T, U> = (
+  request: T,
+  metadata: Metadata,
+  options: Partial<CallOptions>,
+  callback: (err: ServiceError | null, res?: U) => void,
+) => ClientUnaryCall
+
+type PromisifiedCall<T, U> = (
+  request: T,
+  metadata?: Metadata,
+  options?: Partial<CallOptions>,
+) => Promise<U>
+
+export type PromisifiedClient<C> = { $: C } & {
+  [prop in Exclude<keyof C, keyof Client>]: C[prop] extends OriginalCall<infer T, infer U>
+    ? PromisifiedCall<T, U>
+    : never
+}
+
+// https://github.com/timostamm/protobuf-ts/discussions/345#discussioncomment-3106495
+export function promisifyClient<C extends Client>(client: C) {
+  return new Proxy(client, {
+    get: (target, descriptor) => {
+      const key = descriptor as keyof PromisifiedClient<C>
+
+      if (key === '$') return target
+
+      const func = target[key]
+      if (typeof func === 'function')
+        return (...args: unknown[]) =>
+          new Promise((resolve, reject) =>
+            func.call(
+              target,
+              ...[...args, (err: unknown, res: unknown) => (err ? reject(err) : resolve(res))],
+            ),
+          )
+    },
+  }) as unknown as PromisifiedClient<C>
+}
