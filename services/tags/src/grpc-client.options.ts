@@ -9,8 +9,8 @@ export const grpcClientOptions: ClientOptions = {
     package: tagsPackage,
     protoPath: join(protoPath, 'tags.proto'),
     loader: {
+      defaults: true,
       longs: Number,
-      enums: String,
     },
   },
 }
