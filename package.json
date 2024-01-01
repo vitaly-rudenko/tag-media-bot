@@ -1,6 +1,8 @@
 {
   "name": "tag-media-bot",
   "version": "1.0.0",
+  "description": "Tag Media Bot workspace",
+  "author": "Vitaly Rudenko",
   "private": true,
   "license": "MIT",
   "scripts": {

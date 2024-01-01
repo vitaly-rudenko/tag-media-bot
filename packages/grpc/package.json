@@ -1,10 +1,10 @@
 {
   "name": "@tag-media-bot/grpc",
   "version": "1.0.0",
-  "author": "Vitaly Rudenko",
-  "license": "MIT",
-  "private": true,
   "description": "Interfaces for gRPC",
+  "author": "Vitaly Rudenko",
+  "private": true,
+  "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
@@ -12,11 +12,10 @@
     "proto"
   ],
   "scripts": {
+    "build": "rimraf dist && tsc",
     "lint": "eslint \"src/**/*.ts\"",
     "lint:fix": "npm run lint -- --fix",
-    "grpc:generate": "rimraf ./src/generated && mkdirp ./src/generated && protoc --ts_proto_out=./src/generated --plugin=protoc-gen-ts_proto=../../node_modules/.bin/protoc-gen-ts_proto --ts_proto_opt=onlyTypes=true,unrecognizedEnum=false,stringEnums=true ./proto/tags.proto",
-    "cleanup": "rimraf ./dist",
-    "build": "npm run cleanup && tsc"
+    "grpc:generate": "rimraf src/generated && mkdirp src/generated && protoc --ts_proto_out=./src/generated --plugin=protoc-gen-ts_proto=../../node_modules/.bin/protoc-gen-ts_proto --ts_proto_opt=onlyTypes=true,unrecognizedEnum=false,stringEnums=true ./proto/tags.proto"
   },
   "devDependencies": {
     "@tag-media-bot/config": "*",

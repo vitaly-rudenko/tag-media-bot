@@ -5,11 +5,12 @@
   "author": "Vitaly Rudenko",
   "private": true,
   "license": "MIT",
+  "main": "dist/main.js",
   "scripts": {
     "build": "nest build",
     "dev": "nest start --watch",
     "debug": "nest start --debug --watch",
-    "start": "node dist/main",
+    "start": "node dist/main.js",
     "lint": "eslint \"src/**/*.ts\"",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
