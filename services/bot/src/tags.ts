@@ -1,11 +1,4 @@
-export const mediaTypes = [
-  'audio',
-  'video',
-  'photo',
-  'document',
-  'gif',
-  'mpeg4_gif',
-] as const
+export const mediaTypes = ['audio', 'video', 'photo', 'document', 'gif', 'mpeg4_gif'] as const
 
 export type MediaType = (typeof mediaTypes)[number]
 
@@ -61,7 +54,7 @@ export class Tags {
 
   async search(input: SearchTagsDto): Promise<SearchResultDto[]> {
     return this.tags
-      .filter(tag => tag.values.some(value => value.startsWith(input.query)))
-      .map(tag => ({ type: tag.type, fileName: tag.fileName, fileId: tag.fileId }))
+      .filter((tag) => tag.values.some((value) => value.startsWith(input.query)))
+      .map((tag) => ({ type: tag.type, fileName: tag.fileName, fileId: tag.fileId }))
   }
 }

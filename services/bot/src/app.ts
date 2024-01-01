@@ -1,9 +1,9 @@
 import { Telegraf } from 'telegraf'
-import { Tags } from './tags.ts';
-import { UserSession, UserSessions } from './user-sessions.ts';
-import { CreateTag, tagsPackage } from '@tag-media-bot/grpc'
+import { Tags } from './tags'
+import { UserSession, UserSessions } from './user-sessions'
+import { parseTagValues } from './parse-tag-values'
 
-const bot = new Telegraf(process.env.get('TELEGRAM_BOT_TOKEN')!)
+const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN!)
 
 bot.command('start', async (context) => {
   await context.reply('Send a photo, a GIF or a video to tag.')
@@ -63,7 +63,7 @@ bot.on('message', async (context, next) => {
 
   await tags.create({
     authorUserId: context.from.id,
-    tagValue: context.message.text,
+    values: parseTagValues(context.message.text),
     ...userSession,
   })
 
@@ -85,11 +85,11 @@ bot.on('inline_query', async (context, next) => {
   // TODO: fix non-homogeneous results
 
   const queryResults: ({ id: string } & (
-    { type: 'photo'; photo_file_id: string } |
-    { type: 'gif'; gif_file_id: string } |
-    { type: 'mpeg4_gif'; mpeg4_file_id: string } |
-    { type: 'video'; video_file_id: string; title: string } |
-    { type: 'document'; document_file_id: string; title: string }
+    | { type: 'photo'; photo_file_id: string }
+    | { type: 'gif'; gif_file_id: string }
+    | { type: 'mpeg4_gif'; mpeg4_file_id: string }
+    | { type: 'video'; video_file_id: string; title: string }
+    | { type: 'document'; document_file_id: string; title: string }
   ))[] = searchResults.map((tag, index) => {
     if (tag.type === 'photo') {
       return {
@@ -143,7 +143,7 @@ bot.on('inline_query', async (context, next) => {
 // TODO: use webhooks
 bot.launch().catch((error) => {
   console.error(error)
-  Deno.exit(1)
+  process.exit(1)
 })
 
 console.log('Running')

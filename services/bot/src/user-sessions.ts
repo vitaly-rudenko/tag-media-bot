@@ -1,4 +1,4 @@
-import { MediaType } from './tags.ts';
+import { MediaType } from './tags'
 
 export type UserSession = {
   type: MediaType

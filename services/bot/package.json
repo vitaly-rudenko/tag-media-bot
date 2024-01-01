@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "description": "Telegram bot",
   "author": "Vitaly Rudenko",
+  "private": true,
   "license": "MIT",
   "main": "dist/app.js",
   "scripts": {
-    "lint": "eslint \"src/**/*.ts\" --fix"
+    "build": "rimraf dist && tsc",
+    "dev": "ts-node-dev --env-file=.env --respawn --transpile-only src/app.ts",
+    "lint": "eslint \"src/**/*.ts\"",
+    "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
     "@tag-media-bot/grpc": "*",
