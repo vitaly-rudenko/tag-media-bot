@@ -15,7 +15,6 @@ services:
       - mongodb
     ports:
       - "3001:3000"
-      - "5001:5000"
 
   bot:
     container_name: bot
@@ -30,8 +29,6 @@ services:
     depends_on:
       - tags
       - redis
-    ports:
-      - "3002:3000"
 
   mongodb:
     container_name: mongodb

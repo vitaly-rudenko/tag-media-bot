@@ -5,9 +5,11 @@ services:
   #   profiles:
   #     - donotstart
 
-  # tags:
-  #   profiles:
-  #     - donotstart
+  tags:
+    ports:
+      - "5001:5000"
+    # profiles:
+    #   - donotstart
 
   mongodb:
     ports:
