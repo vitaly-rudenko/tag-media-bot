@@ -1,4 +1,7 @@
 import { MediaType } from '@tag-media-bot/grpc'
+import { Redis } from 'ioredis'
+
+const redis = new Redis(process.env.REDIS_URL!)
 
 export type UserSession = {
   type: MediaType
@@ -11,14 +14,15 @@ export class UserSessions {
   sessions = new Map<number, UserSession>()
 
   async set(userId: number, session: UserSession): Promise<void> {
-    this.sessions.set(userId, session)
+    await redis.set(`session:${userId}`, JSON.stringify(session), 'EX', 300)
   }
 
   async get(userId: number): Promise<UserSession | undefined> {
-    return this.sessions.get(userId)
+    const rawSession = await redis.get(`session:${userId}`)
+    return rawSession ? JSON.parse(rawSession) : undefined
   }
 
   async clear(userId: number): Promise<void> {
-    this.sessions.delete(userId)
+    await redis.del(`session:${userId}`)
   }
 }
