@@ -15,7 +15,6 @@ services:
       - mongodb
     ports:
       - "3001:3000"
-      - "5001:5000"
 
   bot:
     container_name: bot
@@ -26,11 +25,10 @@ services:
     environment:
       TELEGRAM_BOT_TOKEN: "$TELEGRAM_BOT_TOKEN"
       TAGS_SERVICE_GRPC_URL: "tags:5000"
+      REDIS_URL: "redis://redis:6379"
     depends_on:
       - tags
       - redis
-    ports:
-      - "3002:3000"
 
   mongodb:
     container_name: mongodb
@@ -40,3 +38,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: "p4ssw0rd"
     volumes:
       - "./mongodb-data:/data/db"
+
+  redis:
+    container_name: redis
+    image: redis:7.2
