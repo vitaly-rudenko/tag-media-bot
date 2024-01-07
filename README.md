@@ -18,4 +18,4 @@ Features:
 
 ## Commands
 - `npm run build` – build all projects
-- `npm run link` – link all projects
+- `npm run lint` – link all projects
